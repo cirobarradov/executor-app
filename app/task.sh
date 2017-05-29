@@ -1,3 +1,3 @@
 #!/bin/bash
-. /venv/bin/activate
+#. /venv/bin/activate
 python /app/task.py	"hola mundo, koño"
