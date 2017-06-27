@@ -5,7 +5,7 @@ import time
 
 def minimalTask(message):
     logging.debug(message)
-    time.sleep(500)
+    time.sleep(50)
     logging.debug("fin de la cita")
 
 if __name__ == '__main__':
