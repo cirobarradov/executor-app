@@ -26,3 +26,5 @@ RUN apt-get update && apt-get install -y python3 python-dev python3-dev python-p
     && rm -rf /usr/share/doc/*  \
       #set permission to task.sh
     && chmod +x /app/task.sh
+
+ENV REDIS_SERVER redis.marathon.l4lb.thisdcos.directory
