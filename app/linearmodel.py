@@ -5,7 +5,7 @@ import sys
 
 import random
 
-def main(redis_server, process, key):
+def task(redis_server, process, key):
     # let's create a linear function with some error called f
     def f(x):
         res = x* 25 + 3
@@ -37,11 +37,13 @@ def main(redis_server, process, key):
     res=' y = {0} * x + {1}'.format(m, b)
     connection = redis.StrictRedis(host=redis_server, port=6379, db=0)
     connection.hset(process, key, res)
-    print(connection.hget(process,key))
+    logging.debug(connection.hget(process,key))
 
 if __name__ == '__main__':
+    import logging
+    logging.basicConfig(level=logging.DEBUG)
     if len(sys.argv) != 4:
-        print("Usage: {} <redis_server> <process> <key>".format(sys.argv[0]))
+        logging.error("Usage: {} <redis_server> <process> <key>".format(sys.argv[0]))
         sys.exit(1)
     else:
-        main(sys.argv[1], sys.argv[2], sys.argv[3])
+        task(sys.argv[1], sys.argv[2], sys.argv[3])
