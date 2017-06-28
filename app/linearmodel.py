@@ -38,6 +38,7 @@ def main(redis_server, process, key):
     connection = redis.StrictRedis(host=redis_server, port=6379, db=0)
     connection.hset(process, key, res)
     print(connection.hget(process,key))
+    sys.exit(1)
 
 if __name__ == '__main__':
     if len(sys.argv) != 4:
