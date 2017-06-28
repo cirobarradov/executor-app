@@ -5,7 +5,7 @@ import sys
 
 import random
 
-def main(redis_server, process, key):
+def main(connection, process, key):
     # let's create a linear function with some error called f
     def f(x):
         res = x* 25 + 3
@@ -35,7 +35,6 @@ def main(redis_server, process, key):
     m = regr.coef_[0]
     b = regr.intercept_
     res=' y = {0} * x + {1}'.format(m, b)
-    connection = redis.StrictRedis(host=redis_server, port=6379, db=0)
     connection.hset(process, key, res)
     print(connection.hget(process,key))
 
