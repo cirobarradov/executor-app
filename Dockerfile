@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y python3 python-dev python3-dev python-p
     && pip install numpy \
     && pip install matplotlib \
     && pip install sklearn \
+    && pip install scipy \
     # create a virtualenv we can later use
     && mkdir -p /venv/ \
     # install python version on virtual environment
