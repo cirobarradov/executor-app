@@ -3,7 +3,7 @@ FROM bitnami/minideb:jessie
 ADD app/ /app/
   
 #run commands:
-RUN apt-get update && apt-get install -y python3 python-dev python3-dev python-pip python-tk  \ 
+RUN apt-get update && apt-get install -y python3 python-dev python3-dev python-pip python-tk \ 
     && pip install virtualenv \
     && pip install numpy \
     && pip install matplotlib \
