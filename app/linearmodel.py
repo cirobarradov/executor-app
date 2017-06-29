@@ -1,5 +1,6 @@
 from sklearn import linear_model
 import redis
+from redis.connection import ConnectionError
 import sys
 # generate random data
 
@@ -35,9 +36,14 @@ def task(redis_server, process, key):
     m = regr.coef_[0]
     b = regr.intercept_
     res=' y = {0} * x + {1}'.format(m, b)
-    connection = redis.StrictRedis(host=redis_server, port=6379, db=0)
-    connection.hset(process, key, res)
-    logging.debug(connection.hget(process,key))
+    try:
+        connection = redis.StrictRedis(host=redis_server, port=6379, db=0)
+        connection.hset(process, key, res)
+        logging.debug(connection.hget(process, key))
+    except ConnectionError:
+        logging.error("ERROR exception in redis connection")
+        sys.exit(1)
+    sys.exit(0)
 
 if __name__ == '__main__':
     import logging
