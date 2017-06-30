@@ -42,7 +42,7 @@ def task(redis_server, process, key):
         logging.debug(connection.hget(process, key))
     except ConnectionError:
         logging.error("ERROR exception in redis connection")
-
+    sys.exit(1)
 if __name__ == '__main__':
     import logging
     logging.basicConfig(level=logging.DEBUG)
